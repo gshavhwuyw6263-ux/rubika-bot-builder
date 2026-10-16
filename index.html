@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -6,20 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ربات‌ساز روبیکا</title>
 <style>
-body{font-family:Tahoma,sans-serif;background:#f3f0ff;margin:0;padding:20px;color:#222}
-main{max-width:600px;margin:30px auto;background:white;padding:24px;border-radius:18px;box-shadow:0 4px 20px #ddd}
-h1{color:#7c3aed}
-button{background:#7c3aed;color:white;border:0;padding:13px 20px;border-radius:10px;font-size:16px}
-input{width:90%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:10px 0}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f3ff;color:#211b38}header{background:linear-gradient(135deg,#5428b8,#8660f5);color:white;padding:25px 18px 35px;border-radius:0 0 26px 26px}header h1{margin:0 0 10px;font-size:25px}header p{line-height:1.9;margin:0;color:#eee7ff}.wrap{max-width:760px;margin:20px auto;padding:0 14px}.status{background:#fff;border:1px solid #e6ddff;border-radius:16px;padding:15px;margin-bottom:16px}.status b{color:#6d3bd1}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:white;border:1px solid #e8e1fa;border-radius:17px;padding:16px;box-shadow:0 5px 18px #34205c0b}.card h2{font-size:16px;margin:0 0 12px;color:#5630b5}.wide{grid-column:1/-1}label{display:block;font-size:13px;margin:12px 0 7px}input,textarea,select{font:inherit;width:100%;padding:12px;border:1px solid #d9d0ef;border-radius:10px;background:#fff;color:#211b38}textarea{min-height:85px;resize:vertical}button{font:inherit;border:0;border-radius:11px;padding:12px 15px;background:#6d3bd1;color:white;width:100%;margin-top:12px;cursor:pointer}button.secondary{background:#eee7ff;color:#5428b8}.note{font-size:12px;line-height:1.9;color:#6b6480}.result{margin-top:12px;padding:12px;border-radius:10px;background:#f2edff;line-height:1.8;display:none}.pill{display:inline-block;background:#eee7ff;color:#5428b8;border-radius:20px;padding:6px 10px;font-size:12px;margin-top:8px}footer{text-align:center;color:#77708c;font-size:12px;padding:25px 10px;line-height:2}@media(max-width:440px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}}
 </style>
 </head>
 <body>
-<main>
-<h1>ربات‌ساز روبیکا</h1>
-<p>به پنل ساخت ربات روبیکا خوش آمدید.</p>
-<label>نام ربات خود را وارد کنید:</label><br>
-<input id="botname" placeholder="نام ربات"><br>
-<button onclick="alert('پنل اولیه آماده است؛ اتصال واقعی ربات هنوز تنظیم نشده است.')">ساخت ربات</button>
-</main>
+<header><h1>🤖 ربات‌ساز روبیکا</h1><p>پنل ساده برای طراحی و مدیریت ربات‌های روبیکا</p><span class="pill">نسخهٔ آزمایشی رابط کاربری</span></header>
+<div class="wrap">
+<div class="status">👋 خوش آمدید! از این پنل می‌توانید تنظیمات اولیهٔ ربات خود را آماده کنید.</div>
+<div class="grid">
+<section class="card"><h2>🛠️ ساخت ربات</h2><label for="botname">نام ربات</label><input id="botname" placeholder="مثلاً ربات پاسخ‌گو"><label for="botdesc">توضیحات ربات</label><input id="botdesc" placeholder="کار ربات چیست؟"><button onclick="makeBot()">ساخت تنظیمات ربات</button><div class="result" id="botresult"></div></section>
+<section class="card"><h2>💬 پاسخ خودکار</h2><label for="keyword">کلمه یا عبارت دریافتی</label><input id="keyword" placeholder="سلام"><label for="reply">پاسخ ربات</label><textarea id="reply" placeholder="سلام! چطور می‌توانم کمک کنم؟"></textarea><button onclick="saveReply()">ذخیرهٔ نمونهٔ پاسخ</button><div class="result" id="replyresult"></div></section>
+<section class="card wide"><h2>📋 پاسخ‌های آزمایشی</h2><p class="note">عبارت و پاسخ را وارد کن و دکمهٔ ذخیره را بزن. این نمونه فقط در همین صفحه نمایش داده می‌شود و هنوز پیام واقعی روبیکا را دریافت نمی‌کند.</p><button class="secondary" onclick="showInfo()">وضعیت اتصال ربات</button><div class="result" id="inforesult"></div></section>
+</div></div>
+<footer>ربات‌ساز روبیکا · نسخهٔ آزمایشی<br>برای پاسخ‌گویی واقعی، سرور و اتصال امن به رابط برنامه‌نویسی روبیکا لازم است.</footer>
+<script>
+function makeBot(){let n=document.getElementById("botname").value.trim();let d=document.getElementById("botdesc").value.trim();let r=document.getElementById("botresult");r.style.display="block";r.textContent=n?"تنظیمات نمایشی برای «"+n+"» آماده شد."+ (d?" توضیحات: "+d:"")+" هنوز ربات واقعی ساخته یا متصل نشده است.":"اول نام ربات را وارد کن."}
+function saveReply(){let k=document.getElementById("keyword").value.trim();let v=document.getElementById("reply").value.trim();let r=document.getElementById("replyresult");r.style.display="block";r.textContent=k&&v?"نمونه ذخیره شد: اگر پیام شامل «"+k+"» باشد، پاسخ پیشنهادی «"+v+"» است. این تنظیم فعلاً نمایشی است.":"لطفاً هم عبارت و هم پاسخ را وارد کن."}
+function showInfo(){let r=document.getElementById("inforesult");r.style.display="block";r.textContent="اتصال واقعی هنوز تنظیم نشده است. توکن ربات را در این صفحه یا کد عمومی قرار نده؛ بعداً آن را در تنظیمات امن سرور قرار می‌دهیم."}
+</script>
 </body>
 </html>
