@@ -1,1 +1,2 @@
 rubika-bot-api
+orjson
